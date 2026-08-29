@@ -1,0 +1,55 @@
+.form-control,
+.form-select {
+    background-color: #f7f3ea;
+    border-color: #c8b79e;
+    color: #302a25;
+}
+
+.form-control:focus,
+.form-select:focus {
+    background-color: #fff;
+    border-color: #a67c52;
+    box-shadow: 0 0 0 0.2rem rgba(166, 124, 82, 0.2);
+}
+
+.form-label {
+    color: #5c4b3e;
+}
+
+.btn-primary {
+    background-color: #a67c52;
+    border-color: #a67c52;
+}
+
+.btn-primary:hover {
+    background-color: #5c4b3e;
+    border-color: #5c4b3e;
+}
+
+        body {
+            background-color: #f7f3ea;
+            color: #302a25;
+        }
+
+        .navbar {
+            background-color: #e8dcc4;
+        }
+
+        .navbar-brand,
+        .nav-link {
+            color: #5c4b3e !important;
+        }
+
+        .card {
+            border-color: #c8b79e;
+        }
+
+        .btn-sand {
+            background-color: #a67c52;
+            color: white;
+        }
+
+        .btn-sand:hover {
+            background-color: #5c4b3e;
+            color: white;
+        }

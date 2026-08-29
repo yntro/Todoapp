@@ -1,60 +1,25 @@
 <!DOCTYPE html>
+
+{% load static %}
+
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <title>{% block title %}Todo{% endblock %}</title>
 
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css"
           rel="stylesheet">
+    <link rel="stylesheet" href="{% static 'todoapp/styles.css' %}">
 
-    <style>
-        body {
-            background-color: #f7f3ea;
-            color: #302a25;
-        }
-
-        .navbar {
-            background-color: #e8dcc4;
-        }
-
-        .navbar-brand,
-        .nav-link {
-            color: #5c4b3e !important;
-        }
-
-        .card {
-            border-color: #c8b79e;
-        }
-
-        .btn-sand {
-            background-color: #a67c52;
-            color: white;
-        }
-
-        .btn-sand:hover {
-            background-color: #5c4b3e;
-            color: white;
-        }
-    </style>
 </head>
 
 <body>
 
-<nav class="navbar navbar-expand-lg shadow-sm">
-    <div class="container">
-        <a class="navbar-brand fw-bold" href="{% url 'home' %}">
-            ✓ Todo
-        </a>
-
-        <div class="navbar-nav ms-auto">
-            <a class="nav-link" href="#">Public tasks</a>
-            <a class="nav-link" href="#">Login</a>
-            <a class="nav-link" href="#">Sign up</a>
-        </div>
-    </div>
-</nav>
+{% include "includes/nav_bar.html" %}
 
 <main class="container py-5">
     <div class="card shadow-lg p-4">
