@@ -1,11 +1,11 @@
-{% extends "base.html" %}
+{% extends "todoapp/base.html" %}
 {% load static %}
 
 {% block title %}Profile{% endblock %}
 
 {% block content %}
         <div class="col-md card mx-4 shadow-sm">
-            <h2 class="mb-4 text-center card-header bg-primary text-white shadow-sm">User details</h2>
+            <h2 class="mb-4 text-center card-header bg-primary shadow-sm">User details</h2>
             <div class="px-4 mb-4">
                 <p><strong>Username: </strong>{{ user.username }}</p>
                 <hr>
@@ -24,7 +24,7 @@
                          height="200"
                          alt="">
                     {% else %}
-                    <img src="{% static 'autoservice/images/No_Image_Available.jpg' %}"
+                    <img src="{% static 'todoapp/images/No_Image_Available.jpg' %}"
                          class="img-fluid rounded"
                          width="200"
                          height="200"
@@ -38,8 +38,7 @@
                     <form method="post" enctype="multipart/form-data">
                         {% csrf_token %}
                         {% load crispy_forms_tags %}
-                        {{ u_form | crispy }}
-                        {{ p_form | crispy }}
+                        {{ form | crispy }}
                         <button type="submit" class="btn btn-primary w-100">Update</button>
                     </form>
                 </div>

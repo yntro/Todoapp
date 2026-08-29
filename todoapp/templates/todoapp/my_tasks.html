@@ -1,0 +1,25 @@
+{% extends "todoapp/base.html" %}
+
+{% block content%}
+    <a href="{% url 'task_create'%}" class="btn btn-primary w-auto mb-1">Add New</a>
+
+        {% for task in tasks %}
+        <div class="shadow-sm card">
+            <div class="card-header bg-primary d-flex align-items-end">
+                <h2 class="mb-0">{{ task.title }}</h2>
+                <small class="fst-italic ms-3">{{ task.date_created }}</small>
+            </div>
+            <div class="px-4">
+                <hr>
+                <p>{{ task.description }}</p>
+                {% if task.status %}
+                    <p><strong>Completed</strong></p>
+                {% else %}
+                     <p><strong>In progress</strong></p>
+                {% endif %}
+                <hr>
+            </div>
+        </div>
+        {% endfor %}
+
+{% endblock %}
