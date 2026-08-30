@@ -31,6 +31,25 @@
     border-color: #5c4b3e;
 }
 
+.btn-secondary {
+    background-color: #5c4b3e;
+    border-color: #5c4b3e;
+    color: white;
+}
+
+.btn-secondary:hover {
+    background-color: #302a25;
+    border-color: #302a25;
+    color: white;
+}
+
+.btn-secondary:active,
+.btn-secondary.active {
+    background-color: #c8a77d !important;
+    border-color: #c8a77d !important;
+    color: #302a25 !important;
+}
+
 .btn-primary:active,
 .btn-primary.active {
     background-color: #c8a77d !important;
@@ -66,3 +85,6 @@
             background-color: #5c4b3e;
             color: white;
         }
+.text-sand {
+    color: #c8a77d !important;
+}

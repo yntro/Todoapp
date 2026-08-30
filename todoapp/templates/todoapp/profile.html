@@ -15,22 +15,6 @@
                 <hr>
                 <p><strong>Email: </strong>{{ user.email }}</p>
                 <hr>
-                <p><strong>Profile picture: </strong></p>
-                <i>
-                    {% if user.profile.image %}
-                    <img src="{{ user.profile.image.url }}"
-                         class="img-fluid rounded"
-                         width="200"
-                         height="200"
-                         alt="">
-                    {% else %}
-                    <img src="{% static 'todoapp/images/No_Image_Available.jpg' %}"
-                         class="img-fluid rounded"
-                         width="200"
-                         height="200"
-                         alt="">
-                    {% endif %}
-                </i>
             </div>
             <div class="card mb-4">
                 <h2 class="mb-4 text-center card-header bg-primary text-white">Change details</h2>

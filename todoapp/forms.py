@@ -19,7 +19,7 @@ class UserUpdateForm(forms.ModelForm):
         model = User
         fields = ["email", "first_name", "last_name"]
 
-class TaskCreateForm(forms.ModelForm):
+class TaskCreateUpdateForm(forms.ModelForm):
     class Meta:
         model = Task
-        fields = ["title", "description"]
+        fields = ["title", "description", 'status', 'public']

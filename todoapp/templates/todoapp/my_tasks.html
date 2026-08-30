@@ -1,13 +1,17 @@
 {% extends "todoapp/base.html" %}
 
 {% block content%}
-    <a href="{% url 'task_create'%}" class="btn btn-primary w-auto mb-1">Add New</a>
+<div><a href="{% url 'task_create'%}" class="btn btn-primary w-auto mb-1">Add New</a></div>
 
         {% for task in tasks %}
         <div class="shadow-sm card">
             <div class="card-header bg-primary d-flex align-items-end">
                 <h2 class="mb-0">{{ task.title }}</h2>
                 <small class="fst-italic ms-3">{{ task.date_created }}</small>
+                <div class="ms-auto p-1">
+                    <a href="{% url 'task_update' task.pk %}" class="btn btn-secondary">Update</a>
+                    <a href="{% url 'task_delete' task.pk %}" class="btn btn-secondary">Delete</a>
+                </div>
             </div>
             <div class="px-4">
                 <hr>

@@ -3,7 +3,7 @@
 {% block title %} Create new task {% endblock %}
 
 {% block content %}
-<a onclick="history.back()" class="btn btn-secondary mb-3">← Back</a>
+<div><a onclick="history.back()" class="btn btn-secondary mb-3">← Back</a></div>
     <div class="content-section">
         <form method="POST">
         {% csrf_token %}
