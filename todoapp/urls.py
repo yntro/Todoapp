@@ -18,4 +18,5 @@ urlpatterns = [
     path('team_tasks/create/', views.TeamTasksCreateView.as_view(), name='team_tasks_create'),
     path('team_tasks/update/<int:pk>', views.TeamTasksUpdateView.as_view(), name='team_tasks_update'),
     path('team_tasks/delete/<int:pk>', views.TeamTasksDeleteView.as_view(), name='team_tasks_delete'),
+    path('dashboard/', views.DashboardView.as_view(), name='dashboard'),
 ]

@@ -9,6 +9,9 @@
                 {% if user.is_staff %}
                     <a class="nav-link" href="{% url 'admin' %}">Admin</a>
                 {% endif %}
+                {% if user.profile.is_manager %}
+                    <a class="nav-link" href="{% url 'dashboard' %}">Dashboard</a>
+                {% endif %}
                 <a class="nav-link" href="{% url 'team_tasks'%}">
                     Team tasks
                 </a>

@@ -7,6 +7,7 @@ from .forms import (UserRegisterForm, UserUpdateForm, TaskCreateUpdateForm,
                     UserUpdateAdminForm, ProfileUpdateAdminForm, TeamCreateUpdateForm,
                     TeamTasksCreateUpdateForm)
 from .models import Task, Profile, Team
+from django.db.models import Count, Q
 
 
 
@@ -163,7 +164,7 @@ class TeamTasksCreateView(LoginRequiredMixin, UserPassesTestMixin, generic.Creat
         return kwargs
 
     def test_func(self):
-        return self.request.user.profile.is_manager
+        return self.request.user.profile.is_manager and self.request.user.profile.team is not None
 
 class TeamTasksUpdateView(LoginRequiredMixin, UserPassesTestMixin, generic.UpdateView):
     model = Task
@@ -186,10 +187,39 @@ class TeamTasksDeleteView(LoginRequiredMixin, UserPassesTestMixin, generic.Delet
     context_object_name = "task"
     success_url = reverse_lazy("team_tasks")
 
-    def get_form_kwargs(self):
-        kwargs = super().get_form_kwargs()
-        kwargs["team"] = self.request.user.profile.team
-        return kwargs
-
     def test_func(self):
         return self.request.user.profile.is_manager and self.get_object().user.profile.team == self.request.user.profile.team
+
+class DashboardView(LoginRequiredMixin, UserPassesTestMixin, generic.TemplateView):
+    template_name = "todoapp/dashboard.html"
+
+    def test_func(self):
+        return self.request.user.profile.is_manager and self.request.user.profile.team is not None
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+
+        team = self.request.user.profile.team
+
+        users = User.objects.filter(profile__team=team)
+        tasks = Task.objects.filter(user__profile__team=team)
+
+        context["user_count"] = users.count()
+        context["task_count"] = tasks.count()
+        context["completed_count"] = tasks.filter(status=True).count()
+        context["in_progress_count"] = tasks.filter(status=False).count()
+        user_stats = []
+
+        for user in users:
+            user_tasks = user.tasks.all()
+
+            user_stats.append({
+                "user": user,
+                "task_count": user_tasks.count(),
+                "completed_count": user_tasks.filter(status=True).count(),
+                "in_progress_count": user_tasks.filter(status=False).count(),
+            })
+
+        context["user_stats"] = user_stats
+
+        return context
