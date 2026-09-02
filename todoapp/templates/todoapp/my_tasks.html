@@ -1,5 +1,7 @@
 {% extends "todoapp/base.html" %}
 
+{% block page_title %}My tasks{% endblock %}
+
 {% block content%}
 <div><a href="{% url 'task_create'%}" class="btn btn-primary w-auto mb-1">Add New</a></div>
 

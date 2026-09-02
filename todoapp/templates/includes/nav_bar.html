@@ -5,11 +5,13 @@
         </a>
 
         <div class="navbar-nav ms-auto">
-            <a class="nav-link" href="#">Public tasks</a>
-            {% if not user.is_authenticated %}
-
-            {% endif %}
             {% if user.is_authenticated %}
+                {% if user.is_staff %}
+                    <a class="nav-link" href="{% url 'admin' %}">Admin</a>
+                {% endif %}
+                <a class="nav-link" href="{% url 'team_tasks'%}">
+                    Team tasks
+                </a>
                 <a class="nav-link" href="{% url 'my_tasks'%}">
                     <i class="bi bi-bookmark"></i>
                     My tasks

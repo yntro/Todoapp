@@ -2,7 +2,7 @@ from django import forms
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
 
-from todoapp.models import Task
+from todoapp.models import Task, Profile, Team
 
 
 class UserRegisterForm(UserCreationForm):
@@ -22,4 +22,31 @@ class UserUpdateForm(forms.ModelForm):
 class TaskCreateUpdateForm(forms.ModelForm):
     class Meta:
         model = Task
-        fields = ["title", "description", 'status', 'public']
+        fields = ["title", "description", 'status']
+
+class UserUpdateAdminForm(forms.ModelForm):
+    class Meta:
+        model = User
+        fields = ["email", "first_name", "last_name", "username"]
+
+class ProfileUpdateAdminForm(forms.ModelForm):
+    class Meta:
+        model = Profile
+        fields = ['team', 'is_manager']
+
+class TeamCreateUpdateForm(forms.ModelForm):
+    class Meta:
+        model = Team
+        fields = ['name', 'manager']
+
+class TeamTasksCreateUpdateForm(forms.ModelForm):
+    class Meta:
+        model = Task
+        fields = ['title', 'description', 'user']
+
+    def __init__(self, *args, team=None, **kwargs):
+        super().__init__(*args, **kwargs)
+
+        self.fields["user"].queryset = User.objects.filter(
+            profile__team=team
+        )

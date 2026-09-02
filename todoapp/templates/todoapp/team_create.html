@@ -1,0 +1,17 @@
+{% extends "todoapp/base.html" %}
+
+{% block title %} Create new team {% endblock %}
+
+{% block content %}
+<div><a onclick="history.back()" class="btn btn-secondary mb-3">← Back</a></div>
+    <div class="content-section">
+        <form method="POST">
+        {% csrf_token %}
+        {% load crispy_forms_tags %}
+            {{ form | crispy }}
+        <div class="form-group">
+            <button class="btn btn-secondary mb-3" type="submit">Save</button>
+        </div>
+        </form>
+    </div>
+{% endblock%}

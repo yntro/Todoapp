@@ -1,0 +1,46 @@
+{% extends "todoapp/base.html" %}
+{% block page_title %}Team tasks{% endblock %}
+{% block content%}
+
+    {% if user.profile.team %}
+
+        {% if user.profile.is_manager %}
+            <div><a href="{% url 'team_tasks_create'%}" class="btn btn-primary w-auto mb-1">Add New</a></div>
+        {% endif %}
+                {% for task in tasks %}
+                <div class="shadow-sm card">
+                    <div class="card-header bg-primary d-flex align-items-end">
+                        <h2 class="mb-0">{{ task.title }}</h2>
+                        <small class="fst-italic ms-3">{{ task.date_created }}</small>
+                        {% if user.profile.is_manager %}
+                            <div class="ms-auto p-1">
+                                <a href="{% url 'team_tasks_update' task.pk %}" class="btn btn-secondary">Update</a>
+                                <a href="{% url 'team_tasks_delete' task.pk %}" class="btn btn-secondary">Delete</a>
+                            </div>
+                        {% endif %}
+                    </div>
+                    <div class="px-4">
+                        <hr>
+                        <p>{{ task.description }}</p>
+                        {% if task.status %}
+                            <p><strong>Completed</strong></p>
+                        {% else %}
+                             <p><strong>In progress</strong></p>
+                        {% endif %}
+                        <hr>
+                        <p>
+                            Responsible: <strong>{{ task.user }} </strong>
+                        </p>
+                        <hr>
+                    </div>
+                </div>
+                {% endfor %}
+    {% else %}
+    <div class="p-4 shadow-sm card text-center">
+        <hr>
+        <h1 class="text-sand ">Not a part of any team.</h1>
+        <hr>
+    </div>
+    {% endif %}
+
+{% endblock %}
